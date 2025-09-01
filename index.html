@@ -10,23 +10,30 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <style>
-        /* Make container take full screen */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
             overflow: hidden;
-            display: none; /* hidden until fadeIn */
         }
 
         .webgl-content, #unityContainer {
             width: 100%;
             height: 100%;
         }
+
+        /* hide container at start */
+        #unityContainer {
+            display: none;
+        }
     </style>
     <script>
-        var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Blue Bounce.json", { onProgress: UnityProgress });
+        var unityInstance = UnityLoader.instantiate(
+            "unityContainer",
+            "Build/Blue Bounce.json",
+            { onProgress: UnityProgress }
+        );
     </script>
 
     <!-- jQuery fallback -->
@@ -49,11 +56,10 @@
         </div>
     </div>
 
-    <!-- Auto-click + fade in -->
     <script>
         setTimeout(function () {
-            $("#unityContainer").find("button").click();
-            $("body").fadeIn();
+            $("#unityContainer").fadeIn();         // fade in Unity
+            $("#unityContainer").find("button").click(); // auto click if button exists
         }, 2000);
     </script>
 </body>
