@@ -17,6 +17,7 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
+            display: none; /* hidden until fadeIn */
         }
 
         .webgl-content, #unityContainer {
@@ -25,7 +26,17 @@
         }
     </style>
     <script>
-        var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Blue Bounce Test.json", { onProgress: UnityProgress });
+        var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Blue Bounce.json", { onProgress: UnityProgress });
+    </script>
+
+    <!-- jQuery fallback -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/al=UadGd2tb60SsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"></script>
+    <script>
+        if (typeof jQuery == 'undefined') {
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"><\/script>');
+        }
     </script>
 </head>
 <body>
@@ -37,5 +48,13 @@
             <div class="title">Blue Bounce</div>
         </div>
     </div>
+
+    <!-- Auto-click + fade in -->
+    <script>
+        setTimeout(function () {
+            $("#unityContainer").find("button").click();
+            $("body").fadeIn();
+        }, 2000);
+    </script>
 </body>
 </html>
